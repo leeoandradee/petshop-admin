@@ -1,0 +1,60 @@
+<h2>Informações</h2>
+<form [formGroup]="customerForm">
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Digite o nome do cliente">
+            <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+    </p>
+    
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Telefone</mat-label>
+            <input matInput mask="00 00000-0000" placeholder="Digite o telefone">
+            <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+    </p>
+    
+    <h2>Endereço</h2>
+    
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>CEP</mat-label>
+            <input matInput placeholder="Digite o CEP" mask="00000-000" [formControl]="customerForm.controls['cep']" (keyup)="validateCep()" >
+            <mat-icon matSuffix>location_on</mat-icon>
+            <mat-error *ngIf="customerForm.controls['cep'].invalid">{{getCepErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </p>
+    
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Rua</mat-label>
+            <input matInput placeholder="Digite o endereço" [formControl]="customerForm.controls['address']">
+        </mat-form-field>
+    </p>
+    
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Número</mat-label>
+            <input matInput placeholder="Digite o número da casa" [formControl]="customerForm.controls['number']">
+            <mat-error *ngIf="customerForm.controls['number'].invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </p>
+    
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Complemento</mat-label>
+            <input matInput placeholder="Digite o complemento" [formControl]="customerForm.controls['complement']">
+        </mat-form-field>
+    </p>
+    
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Bairro</mat-label>
+            <input matInput placeholder="Digite o bairro" [formControl]="customerForm.controls['district']">
+        </mat-form-field>
+    </p>
+    
+    <button mat-raised-button color="primary" (click)="getCep()">cadastrar</button>
+</form>
